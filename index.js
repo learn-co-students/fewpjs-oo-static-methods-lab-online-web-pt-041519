@@ -2,6 +2,7 @@ class Formatter {
   //add static methods here
 
   static capitalize(str) {
+    this.sanitize(str)
     return str[0].toUpperCase() + str.slice(1)
   }
 
@@ -16,12 +17,12 @@ class Formatter {
 
     for (let i = 0; i < words.length; i++) {
       if ( i === 0 ) {
-          newArr.push( this.capitalize( words[i] ) )
+          newArr.push( this.capitalize( this.sanitize(words[i]) ) )
         } else {
           if ( ignoredWords.includes( words[i] ) ) {
-            newArr.push( words[i] )
+            newArr.push( this.sanitize(words[i]) )
           } else {
-            newArr.push( this.capitalize( words[i] ) )
+            newArr.push( this.capitalize(this.sanitize(words[i]) ) )
           }
         }
       }
